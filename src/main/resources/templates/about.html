@@ -8,11 +8,13 @@
 </head>
 <body>
 <h1>About me</h1>
+<p>This is all about me...</p>
 <ol>
 <li><p th:text="${myName}">Abdellah Dahmani</p></li>
 <li><p th:text="${myCity}">Borgerhout</p></li>
 <li><p th:text="${myStreet}">Appelstraat 47</p></li>
 </ol>
 <a th:href="@{/}">home</a>
+<p th:text="'Ik ben ' + ${myName} +' en woon in '+ ${myStreet} + ' te ' + ${myCity}">zin</p>
 </body>
 </html>

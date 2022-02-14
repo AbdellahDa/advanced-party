@@ -9,5 +9,7 @@
 <body>
 <h1>Homepagina</h1>
 <p th:text="${myCalculatedValue}">onbekend nummer</p>
+<a th:href="@{/about}">about</a>
+<p th:text="${appName}+${appName}">appname<p/>
 </body>
 </html>
