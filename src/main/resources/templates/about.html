@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>About me</h1>
+<div class="navbuttons">
+    <a class="buttonLook menuButton" th:href="@{/}">home</a>
+    <a class="buttonLook menuButton" th:href="@{/venuedetails}">venues</a>
+    <a class="buttonLook menuButton" th:href="@{/about}">about</a>
+</div>
 <p>This is all about me...</p>
 <ol>
 <li><p th:text="${myName}">Abdellah Dahmani</p></li>

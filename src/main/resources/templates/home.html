@@ -1,15 +1,23 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd%22%3E">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" media="all"
-          th:href="@{/css/party.css}" href="/static/css/party.css"/>
+<meta charset="UTF-8">
+<title>Homepagina</title>
+<link rel="stylesheet" type="text/css" media="all"
+      th:href="@{css/party.css}" href="/static/css/party.css"/>
 </head>
 <body>
-<h1>Homepagina</h1>
-<p th:text="${myCalculatedValue}">onbekend nummer</p>
-<a th:href="@{/about}">about</a>
-<p th:text="${appName}+${appName}">appname<p/>
+<div class="nav">
+    <h1>Let's Party!</h1>
+
+    <div class="navbuttons">
+        <a class="buttonLook menuButton" th:href="@{/}">home</a>
+        <a class="buttonLook menuButton" th:href="@{/venuedetails}">venues</a>
+        <a class="buttonLook menuButton" th:href="@{/about}">about</a>
+    </div>
+</div>
+<main>
+    <p th:text="${myCalculatedValue}">onbekend nummer</p>
+    <p th:text="${appName}+${appName}">appname</p>
+</main>
 </body>
 </html>

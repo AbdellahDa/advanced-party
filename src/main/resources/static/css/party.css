@@ -1,10 +1,49 @@
-html{
-background-color: red;
+html {
+    background-color: #cd8a27;
 }
-div.info{
+
+div.info {
     display: inline-block;
     width: 200px;
 }
-div.info+div{
+
+div.info + div {
     display: inline-block;
+}
+
+div.info {
+    display: inline-block;
+    width: 200px;
+}
+
+div.info + div {
+    display: inline-block;
+}
+
+.nav {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    color: #EDC7CF;
+    height: 150px;
+}
+
+a.menuButton {
+    display: block;
+    margin: 0 10px;
+    width: 6em;
+    padding: 0.2em;
+}
+
+.buttonLook {
+    background-color: #EDC7CF;
+    color: #6A8E7F;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 1px darkgrey;
+}
+
+.navbuttons {
+    display: flex;
 }
