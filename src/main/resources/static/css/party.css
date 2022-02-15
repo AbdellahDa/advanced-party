@@ -1,3 +1,10 @@
 html{
 background-color: red;
 }
+div.info{
+    display: inline-block;
+    width: 200px;
+}
+div.info+div{
+    display: inline-block;
+}

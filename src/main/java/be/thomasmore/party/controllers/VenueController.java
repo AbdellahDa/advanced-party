@@ -10,9 +10,10 @@ public class VenueController {
 
     @GetMapping("/venuedetails")
     public String venuedetails(Model model) {
-        Venue v = new Venue("Boesjkammeree", "https://abdellahdahmani.be/");
+        Venue v = new Venue("Boesjkammeree", "https://denaalmoezenier.weebly.com/", 100, true, true, false, false, "Antwerpen", 1);
         model.addAttribute("venue", v);
         return "venuedetails";
     }
+
 
 }
