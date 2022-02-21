@@ -20,10 +20,6 @@ public class Venue {
     public Venue() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -38,6 +34,10 @@ public class Venue {
         this.freeParkingAvailable = freeParkingAvailable;
         this.city = city;
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getVenueName() {
