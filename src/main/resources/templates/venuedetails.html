@@ -8,11 +8,7 @@
 </head>
 <body>
 <h1>Den Aalmoezenier</h1>
-<div class="navbuttons">
-    <a class="buttonLook menuButton" th:href="@{/}">home</a>
-    <a class="buttonLook menuButton" th:href="@{/venuedetails}">venues</a>
-    <a class="buttonLook menuButton" th:href="@{/about}">about</a>
-</div>
+<div th:replace="fragments/header :: header">Hier komt de header</div>
 <div>
     <div class="info">Info :</div>
     <div><a th:href="@{${venue.getLinkMoreInfo()}}">https://denaalmoezenier.weebly.com/</a></div>

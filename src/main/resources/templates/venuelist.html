@@ -8,13 +8,7 @@
 </head>
 <body>
 <h1>Let's party!</h1>
-
-
-<div class="navbuttons">
-    <a class="buttonLook menuButton" th:href="@{/}">home</a>
-    <a class="buttonLook menuButton" th:href="@{/venuedetails}">venues</a>
-    <a class="buttonLook menuButton" th:href="@{/about}">about</a>
-</div>
+<div th:replace="fragments/header :: header">Hier komt de header</div>
 <h2>Venues</h2>
 <a class="buttonLook menuButton" th:href="@{/}">venue 1</a>
 <br>

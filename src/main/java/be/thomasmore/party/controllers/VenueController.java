@@ -27,6 +27,8 @@ public class VenueController {
 
     @GetMapping("/venuelist")
     public String venueList(Model model) {
+            Iterable<Venue> allVenues = venueRepository.findAll();
+            model.addAttribute("venue", allVenues);
         return "venuelist";
     }
 }
