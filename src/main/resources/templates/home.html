@@ -6,15 +6,7 @@
       th:href="@{css/party.css}" href="/static/css/party.css"/>
 </head>
 <body>
-<div class="nav">
-    <h1>Let's Party!</h1>
-
-    <div class="navbuttons">
-        <a class="buttonLook menuButton" th:href="@{/}">home</a>
-        <a class="buttonLook menuButton" th:href="@{/venuedetails}">venues</a>
-        <a class="buttonLook menuButton" th:href="@{/about}">about</a>
-    </div>
-</div>
+<div th:replace="fragments/header :: header">Hier komt de header</div>
 <main>
     <p th:text="${myCalculatedValue}">onbekend nummer</p>
     <p th:text="${appName}+${appName}">appname</p>
