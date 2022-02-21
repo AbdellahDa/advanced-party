@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Den Aalmoezenier</h1>
-<div th:replace="fragments/header :: header">Hier komt de header</div>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <div>
     <div class="info">Info :</div>
     <div><a th:href="@{${venue.getLinkMoreInfo()}}">https://denaalmoezenier.weebly.com/</a></div>
@@ -34,20 +34,6 @@
     <div class="info">distance public transport? :</div>
     <div><p th:text="${venue.getCity() }">Anwterpen</p></div>
     <br>
-</div>
-<div class="row1">
-    <div class="row1content" th:if="${venue}">
-        <div>
-            <h2 th:text="${venue.getVenueName()}">Naam venue</h2>
-        </div>
-        <div>
-            <div class="info">Info : </div>
-            ...
-        </div>
-    </div>
-    <div class="row1content" th:unless="${venue}">
-        <p>no venue was chosen</p>
-    </div>
 </div>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class VenueController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{id}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer id) {
-        if (id==null) return "venuedetails";
+        if (id == null) return "venuedetails";
         Optional<Venue> optionalVenue = venueRepository.findById(id);
         if (optionalVenue.isPresent()) {
             model.addAttribute("venue", optionalVenue.get());
@@ -27,8 +27,8 @@ public class VenueController {
 
     @GetMapping("/venuelist")
     public String venueList(Model model) {
-            Iterable<Venue> allVenues = venueRepository.findAll();
-            model.addAttribute("venue", allVenues);
+        Iterable<Venue> allVenues = venueRepository.findAll();
+        model.addAttribute("venues", allVenues);
         return "venuelist";
     }
 }
