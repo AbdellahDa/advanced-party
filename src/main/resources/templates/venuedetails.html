@@ -2,12 +2,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Venue</title>
+    <title>Venuedetails</title>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/party.css}" href="/static/css/party.css"/>
 </head>
 <body>
-<h1>Den Aalmoezenier</h1>
+<h1 th:text="${venue.getVenueName()}"> Den Aalmoezenier</h1>
 <div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <div>
     <div class="info">Info :</div>
@@ -35,5 +35,6 @@
     <div><p th:text="${venue.getCity() }">Anwterpen</p></div>
     <br>
 </div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </body>
 </html>

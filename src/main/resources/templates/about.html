@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>About me</h1>
-<div th:replace="fragments/header :: header">Hier komt de header</div>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <p>This is all about me...</p>
 <ol>
 <li><p th:text="${myName}">Abdellah Dahmani</p></li>
@@ -18,4 +18,5 @@
 <a th:href="@{/}">home</a>
 <p th:text="'Ik ben ' + ${myName} +' en woon in '+ ${myStreet} + ' te ' + ${myCity}">zin</p>
 </body>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </html>
