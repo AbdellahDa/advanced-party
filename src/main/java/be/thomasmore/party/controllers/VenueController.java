@@ -45,4 +45,11 @@ public class VenueController {
         model.addAttribute("venues", allVenues);
         return "venuelist";
     }
+
+    @GetMapping("/venuelist/outdoor/{filter}")
+    public String venueListOutdoorYes(Model model, @PathVariable Boolean filter) {
+        Iterable<Venue> venues = venueRepository.findByOutdoor(filter);
+        model.addAttribute("venues", venues);
+        return "venuelist";
+    }
 }
