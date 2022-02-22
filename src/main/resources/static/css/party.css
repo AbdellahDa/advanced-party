@@ -47,3 +47,6 @@ a.menuButton {
 .navbuttons {
     display: flex;
 }
+.bottom {
+    width: 50px;
+}

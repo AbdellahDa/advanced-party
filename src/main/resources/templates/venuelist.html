@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd%22%3E">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
-<title>Homepagina</title>
+<title>Venuelist</title>
 <link rel="stylesheet" type="text/css" media="all"
       th:href="@{css/party.css}" href="/static/css/party.css"/>
 </head>
@@ -19,5 +19,6 @@
         </div>
     </div>
 </div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </body>
 </html>

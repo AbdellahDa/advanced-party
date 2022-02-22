@@ -6,10 +6,11 @@
       th:href="@{css/party.css}" href="/static/css/party.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header">Hier komt de header</div>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <main>
     <p th:text="${myCalculatedValue}">onbekend nummer</p>
     <p th:text="${appName}+${appName}">appname</p>
 </main>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </body>
 </html>
