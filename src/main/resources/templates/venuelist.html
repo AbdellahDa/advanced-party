@@ -3,10 +3,18 @@
 <meta charset="UTF-8">
 <title>Venuelist</title>
 <link rel="stylesheet" type="text/css" media="all"
-      th:href="@{css/party.css}" href="/static/css/party.css"/>
+      th:href="@{/css/party.css}" href="/static/css/party.css"/>
 </head>
 <body>
 <div th:replace="fragments/headerfooter :: header">header</div>
+<div class="filters">
+    <div class="onefilter">
+        <div class="filtername">outdoor:</div>
+        <a class="buttonLook filterButton" href="/venuelist">all</a>
+        <a class="buttonLook filterButton" href="/venuelist/outdoor/yes">yes</a>
+        <a class="buttonLook filterButton" href="/venuelist/outdoor/no">no</a>
+    </div>
+</div>
 <div class="row1">
     <div class="row1content">
         <h2>venues</h2>
