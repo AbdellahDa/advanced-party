@@ -7,13 +7,13 @@
 </head>
 <body>
 <div th:replace="fragments/headerfooter :: header">header</div>
-<div class="filters">
-    <div class="onefilter">
-        <div class="filtername">outdoor:</div>
-        <a class="buttonLook filterButton activeFilter" href="/venuelist">all</a>
-        <a class="buttonLook filterButton" href="/venuelist/outdoor/true">yes</a>
-        <a class="buttonLook filterButton" href="/venuelist/outdoor/false">no</a>
-    </div>
+<div class="onefilter">
+    <div class="filtername">outdoor:</div>
+    <a class="buttonLook filterButton" th:classappend="${outdoorFilter==null} ? 'activeFilter' : ''" href="/venuelist">all</a>
+    <a class="buttonLook filterButton" th:classappend="${outdoorFilter!=null && outdoorFilter} ? 'activeFilter' : ''"
+       href="/venuelist/outdoor/true">yes</a>
+    <a class="buttonLook filterButton" th:classappend="${outdoorFilter!=null && !outdoorFilter} ? 'activeFilter' : ''"
+       href="/venuelist/outdoor/false">no</a>
 </div>
 <div class="row1">
     <div class="row1content">
