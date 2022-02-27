@@ -3,14 +3,13 @@
 <meta charset="UTF-8">
 <title>Homepagina</title>
 <link rel="stylesheet" type="text/css" media="all"
-      th:href="@{/css/party.css}" href="/static/css/party.css"/>
+      th:href="@{/css/party.css}" href="/static/static/party.css"/>
 </head>
+
 <body>
+<h1>Let's Party</h1>
 <div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
-<main>
-    <p th:text="${myCalculatedValue}">onbekend nummer</p>
-    <p th:text="${appName}+${appName}">appname</p>
-</main>
+<h2>Homepagina</h2>
 <div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </body>
 </html>
