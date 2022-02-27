@@ -50,3 +50,7 @@ a.menuButton {
 .bottom {
     width: 50px;
 }
+img {
+    width: 100%;
+    height: auto;
+}
