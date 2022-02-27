@@ -1,0 +1,16 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd%22%3E">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Homepagina</title>
+<link rel="stylesheet" type="text/css" media="all"
+      th:href="@{/css/party.css}" href="/static/static/party.css"/>
+</head>
+
+<body>
+<h1>Let's Party</h1>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<h2>Ai, er ging iets mis...</h2>
+<p>Gebruik het menu om verder te werken met de applicatie</p>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
+</body>
+</html>
