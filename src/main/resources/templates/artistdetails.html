@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Artistdetails</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/party.css}" href="/static/static/party.css"/>
+</head>
+<body>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div th:if="${artist}">
+    <h2 th:text="${artist.getArtistName()}">Naam artist</h2>
+    <div>
+        <div class="info">Info :</div>
+        <div><a th:href="@{${artist.getLinkMoreInfo()}}">https://denaalmoezenier.weebly.com/</a></div>
+        <br>
+        <div class="info">Genre :</div>
+        <div><p th:text="${artist.getGenre()}">rap</p></div>
+        <br>
+        <div class="info">bio :</div>
+        <div><p th:text="${artist.getBio()}">bio</p></div>
+        <br>
+        <div class="info">portfolio :</div>
+        <div><p th:text="${artist.portfolio }">portefolio</p></div>
+        <br>
+    </div>
+</div>
+<div class="row1content" th:unless="${artist}">
+    <p>no venue was chosen</p>
+</div>
+<footer th:replace="fragments/headerfooter :: footer">Hier komt de footer</footer>
+</body>
+</html>

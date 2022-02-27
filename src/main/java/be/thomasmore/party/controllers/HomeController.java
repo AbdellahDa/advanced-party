@@ -11,20 +11,11 @@ import java.time.format.DateTimeFormatter;
 public class HomeController {
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-        int myCalculatedValue = 34 * 62;
-        model.addAttribute("myCalculatedValue", myCalculatedValue);
-        model.addAttribute("appName", "MyApp");
         return "home";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
-        String myName = "Abdellah";
-        model.addAttribute("myName", myName);
-        String myCity = "Borgerhout";
-        model.addAttribute("myCity", myCity);
-        String myStreet = "Appelstraat 47";
-        model.addAttribute("myStreet", myStreet);
         return "about";
     }
 
