@@ -23,4 +23,5 @@ public interface VenueRepository extends CrudRepository<Venue, Integer> {
 
     List<Object> findFirstByOrderByIdAsc();
 
+    Iterable<Venue> findByCapacityIsGreaterThanEqual(Integer minimumCapacity);
 }

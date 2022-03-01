@@ -2,16 +2,21 @@ package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Controller
 public class VenueController {
+    private final Logger logger = LoggerFactory.getLogger(VenueController.class);
     @Autowired
     private VenueRepository venueRepository;
 
@@ -19,9 +24,7 @@ public class VenueController {
     public String venueDetails(Model model, @PathVariable(required = false) Integer id) {
         if (id == null) return "venuedetails";
         Optional<Venue> optionalVenue = venueRepository.findById(id);
-        if (optionalVenue.isPresent()) {
-            model.addAttribute("venue", optionalVenue.get());
-        }
+        optionalVenue.ifPresent(venue -> model.addAttribute("venue", venue));
         return "venuedetails";
     }
 
@@ -39,49 +42,36 @@ public class VenueController {
         return "venuelist";
     }
 
-    @GetMapping("/venuelist/outdoor/{filter}")
-    public String venueListOutdoorYes(Model model, @PathVariable Boolean filter) {
-        Iterable<Venue> venues = venueRepository.findByOutdoor(filter);
-        model.addAttribute("venues", venues);
-        return "venuelist";
-    }
-
     @GetMapping({"/venuelist", "/venuelist/{something}"})
     public String venueListSomething(Model model) {
         Iterable<Venue> allVenues = venueRepository.findAll();
+        model.addAttribute("nrVenues", venueRepository.count());
         model.addAttribute("venues", allVenues);
         return "venuelist";
     }
 
-    @GetMapping({"/venuelist/outdoor/{filter}", "/venuelist/outdoor"})
-    public String venueListOutdoorYes(Model model, @PathVariable(required = false) String filter) {
-        boolean boolFilter = true;
-        if (filter != null && (filter.equals("no") || filter.equals("false"))) boolFilter = false;
-        Iterable<Venue> venues = venueRepository.findByOutdoor(boolFilter);
-        model.addAttribute("outdoorFilter", boolFilter);
-        model.addAttribute("venues", venues);
+    @GetMapping({"/venuelist/filter"})
+    public String venueListWithFilter(Model model,
+                                      @RequestParam(required = false) Integer minimumCapacity,
+                                      @RequestParam(required = false) Integer maximumCapacity) {
+        logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
+        Iterable<Venue> allVenues;
+        if (minimumCapacity != null && maximumCapacity != null) {
+            allVenues = venueRepository.findByCapacityIsBetween(minimumCapacity, maximumCapacity);
+        } else if (minimumCapacity != null) {
+            allVenues = venueRepository.findByCapacityIsGreaterThanEqual(minimumCapacity);
+        } else if (maximumCapacity != null) {
+            allVenues = venueRepository.findByCapacityIsGreaterThan(maximumCapacity);
+        } else {
+            allVenues = venueRepository.findAll();
+        }
+        model.addAttribute("venues", allVenues);
+        int nrVenues = ((Collection<Venue>) allVenues).size();
+        model.addAttribute("nrVenues", nrVenues);
+
+        model.addAttribute("showFilter", true);
+        model.addAttribute("mincapacity", minimumCapacity);
         return "venuelist";
     }
 
-    @GetMapping({"/venuelist/size/{filter}", "/venuelist/size"})
-    public String venueListSize(Model model, @PathVariable(required = false) String filter) {
-        if (filter == null) filter = "all";
-        if (filter.equals("s")) filter = "S";
-        if (filter.equals("m")) filter = "M";
-        if (filter.equals("l")) filter = "L";
-        if (!filter.equals("S") && !filter.equals("M") && !filter.equals("L")) filter = "all";
-        Iterable<Venue> venues;
-        if (filter.equals("all")) {
-            venues = venueRepository.findAll();
-        } else if (filter.equals("S")) {
-            venues = venueRepository.findByCapacityLessThanEqual(200);
-        } else if (filter.equals("M")) {
-            venues = venueRepository.findByCapacityIsBetween(200, 500);
-        } else {
-            venues = venueRepository.findByCapacityIsGreaterThan(500);
-        }
-        model.addAttribute("sizeFilter", filter);
-        model.addAttribute("venues", venues);
-        return "venuelist";
-    }
 }
