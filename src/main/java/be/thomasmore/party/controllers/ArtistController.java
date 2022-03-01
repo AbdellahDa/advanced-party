@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -24,11 +25,28 @@ public class ArtistController {
 
     @GetMapping({"/artistdetails", "/artistdetails/{id}"})
     public String artistdetails(Model model, @PathVariable(required = false) Integer id) {
-        if (id==null) return "artistdetails";
+        if (id == null) return "artistdetails";
         Optional<Artist> optionalArtist = artistRepository.findById(id);
         if (optionalArtist.isPresent()) {
             model.addAttribute("artist", optionalArtist.get());
         }
         return "artistdetails";
+    }
+
+    @GetMapping({"/artistlist/filter"})
+    public String artistListWithFilter(Model model, @RequestParam(required = false) String keyword) {
+        Iterable<Artist> allArtist = artistRepository.findAll();
+        if (keyword != null) {
+
+            allArtist = artistRepository.findByKeyword(keyword);
+        } else {
+            allArtist = artistRepository.findAll();
+
+        }
+        model.addAttribute("artists", allArtist);
+        model.addAttribute("nrArtists", artistRepository.count());
+        model.addAttribute("showFilter", true);
+        model.addAttribute("keyword", keyword);
+        return "artistlist";
     }
 }
