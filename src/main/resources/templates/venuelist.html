@@ -6,15 +6,44 @@
       th:href="@{/css/party.css}" href="/static/static/party.css"/>
 </head>
 <body>
-<br>
 <div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <div class="row1">
     <div class="row1content">
         <h2>venues</h2>
+        <div class="verticalmargin">
+            <span class="generalinfo" th:text="|${nrVenues} venues found|">0 venues found</span>
+        </div>
         <div class="filters" th:if="${showFilter}">
             <div class="verticalmargin">
                 <a th:href="@{/venuelist}" class="buttonLook filterButton">-</a>
-                <p>hier komen de filters</p>
+                <form>
+                    <div class="onefilter">
+                        <input type="submit" value="search" class="buttonLook">
+                    </div>
+                    <h3>capacity</h3>
+                    <div class="onefilter">
+                        <label for="minCapacity" class="filtername">min</label>
+                        <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minCapacity}" step="50"> <span>persons</span>
+                    </div>
+                    <div class="onefilter">
+                        <label for="maxCapacity" class="filtername">max</label>
+                        <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maxCapacity}" step="50"> <span>persons</span>
+                    </div>
+                    <h3>distance to public transport</h3>
+                    <div class="onefilter">
+                        <label for="distance" class="filtername">max</label>
+                        <input type="number" id="distance" name="distanceTransport" th:value="${distance}" step="0.5"> <span>km</span>
+                    </div>
+                    <h3>food provided</h3>
+                    <div class="onefilter">
+                        <label for="yes" class="filtername">yes</label>
+                        <input type="radio" id="yes" name="foodProvided" value="true" th:checked="${foodProvided==true}">
+                        <label for="no" class="filtername">no</label>
+                        <input type="radio" id="no" name="foodProvided" value="false" th:checked="${foodProvided==false}">
+                        <label for="all" class="filtername">all</label>
+                        <input type="radio" id="all" name="foodProvided" value="" th:checked="${foodProvided==null}">
+                    </div>
+                </form>
             </div>
         </div>
         <div class="filters" th:unless="${showFilter}">
@@ -22,28 +51,7 @@
                 <a th:href="@{/venuelist/filter}" class="buttonLook filterButton">+</a>
             </div>
         </div>
-        <div class="filters" th:if="${showFilter}">
-            <form>
-                <div class="onefilter">
-                    <input type="submit" value="search" class="buttonLook">
-                </div>
-                <h3>capacity</h3>
-                <div class="onefilter">
-                    <label for="minCapacity" class="filtername">min</label>
-                    <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minCapacity}" step="50">
-                    <span>persons</span>
-                </div>
-                <div class="onefilter">
-                    <label for="maxCapacity" class="filtername">min</label>
-                    <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maxCapacity}" step="50">
-                    <span>persons</span>
-                </div>
-            </form>
-        </div>
-        <div class="verticalmargin">
-            <span class="generalinfo" th:text="|${nrVenues} venues found|">0 venues found</span>
-        </div>
-        <div class="venuelist">
+        <div class="venuelist collectionlist">
             <div th:each="venue: ${venues}">
                 <a class="buttonLook mediumButton" th:href="@{|/venuedetails/${venue.id}}">
                     <span th:text="${venue.venueName}">venue name</span>
@@ -53,6 +61,8 @@
                 </a>
             </div>
         </div>
-        <div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
+    </div>
+</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de header</div>
 </body>
 </html>
