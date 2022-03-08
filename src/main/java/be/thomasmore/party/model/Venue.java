@@ -8,6 +8,7 @@ public class Venue {
     @Id
     private Integer id;
     private String venueName;
+    private String showFilter;
     private String linkMoreInfo;
     private int capacity;
     private boolean foodProvided;
@@ -16,7 +17,6 @@ public class Venue {
     private boolean freeParkingAvailable;
     private String city;
     private double distanceFromPublicTransportInKm;
-
     public Venue() {
     }
 
@@ -24,8 +24,9 @@ public class Venue {
         this.id = id;
     }
 
-    public Venue(String venueName, String linkMoreInfo, int capacity, boolean foodProvided, boolean indoor, boolean outdoor, boolean freeParkingAvailable, String city, double distanceFromPublicTransportInKm) {
+    public Venue(String venueName,String showFilter, String linkMoreInfo, int capacity, boolean foodProvided, boolean indoor, boolean outdoor, boolean freeParkingAvailable, String city, double distanceFromPublicTransportInKm) {
         this.venueName = venueName;
+        this.showFilter = showFilter;
         this.linkMoreInfo = linkMoreInfo;
         this.capacity = capacity;
         this.foodProvided = foodProvided;
@@ -42,6 +43,10 @@ public class Venue {
 
     public String getVenueName() {
         return venueName;
+    }
+
+    public String getShowFilter() {
+        return showFilter;
     }
 
     public int getCapacity() {
