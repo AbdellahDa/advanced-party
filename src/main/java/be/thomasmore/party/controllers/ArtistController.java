@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -17,17 +19,42 @@ public class ArtistController {
 
     @GetMapping("/artistlist")
     public String artistList(Model model) {
-        Iterable<Artist> allArtists = artistRepository.findAll();
-        model.addAttribute("artists", allArtists);
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists", artists);
+        model.addAttribute("nrArtists", artistRepository.count());
+        return "artistlist";
+    }
+
+    @GetMapping("/artistlist/filter")
+    public String artistListWithFilter(Model model,
+                                       @RequestParam(required = false) String keyword) {
+        Iterable<Artist> artists = artistRepository.findByKeyword(keyword);
+        model.addAttribute("showFilter", true);
+        model.addAttribute("artists", artists);
+        int nrArtists = ((Collection<Artist>) artists).size();
+        model.addAttribute("nrArtists", nrArtists);
+        model.addAttribute("keyword", keyword);
         return "artistlist";
     }
 
     @GetMapping({"/artistdetails", "/artistdetails/{id}"})
-    public String artistdetails(Model model, @PathVariable(required = false) Integer id) {
+    public String artistDetails(Model model, @PathVariable(required = false) Integer id) {
         if (id==null) return "artistdetails";
         Optional<Artist> optionalArtist = artistRepository.findById(id);
+        Optional<Artist> optionalPrev = artistRepository.findFirstByIdLessThanOrderByIdDesc(id);
+        Optional<Artist> optionalNext = artistRepository.findFirstByIdGreaterThanOrderById(id);
         if (optionalArtist.isPresent()) {
             model.addAttribute("artist", optionalArtist.get());
+        }
+        if (optionalPrev.isPresent()) {
+            model.addAttribute("prev", optionalPrev.get().getId());
+        } else {
+            model.addAttribute("prev", artistRepository.findFirstByOrderByIdDesc().get().getId());
+        }
+        if (optionalNext.isPresent()) {
+            model.addAttribute("next", optionalNext.get().getId());
+        } else {
+            model.addAttribute("next", artistRepository.findFirstByOrderByIdAsc().get().getId());
         }
         return "artistdetails";
     }
