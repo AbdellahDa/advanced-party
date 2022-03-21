@@ -4,7 +4,6 @@ import be.thomasmore.party.model.Party;
 import be.thomasmore.party.model.Venue;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface PartyRepository extends CrudRepository<Party, Integer> {
@@ -13,5 +12,5 @@ public interface PartyRepository extends CrudRepository<Party, Integer> {
     Optional<Party> findFirstByOrderByIdDesc();
     Optional<Party> findFirstByOrderByIdAsc();
 
-    List<Party> findAllByVenue(Venue venue);
+    Iterable<Party> findByVenue(Venue venue);
 }
