@@ -40,8 +40,16 @@ public class AdminController {
 
     @PostMapping("/partyedit/{id}")
     public String partyEditPost(Model model, @PathVariable int id, @ModelAttribute("party") Party party) {
-        logger.info("partyEditPost " + id + " -- new name=" + party.getName());
-        partyRepository.save(party);
+        logger.info("partyeditpost : " + id + " -- new name: " + party.getName());
+        Optional<Party> optionalParty = partyRepository.findById(id);
+        if (optionalParty.isPresent()) {
+            Party partyToUpdate = optionalParty.get();
+            partyToUpdate.setName(party.getName());
+            partyToUpdate.setPriceInEur(party.getPriceInEur());
+            partyToUpdate.setPricePresaleInEur(party.getPricePresaleInEur());
+            partyToUpdate.setExtraInfo(party.getExtraInfo());
+            partyRepository.save(partyToUpdate);
+        }
         return "redirect:/partydetails/"+id;
     }
 
