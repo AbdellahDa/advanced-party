@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css"/>
 <head>
     <meta charset="UTF-8">
     <title>partydetails</title>
@@ -24,20 +24,24 @@
             <p th:unless="${party}">party: onbekend</p>
         </div>
         <div th:if="${party}">
-            <div class="info">Where : </div>
+            <div class="info">Where :</div>
             <div><p>
                 <span th:text="|${party.venue.venueName} (${party.venue.city}, ${party.venue.distanceFromPublicTransportInKm} km van openbaar vervoer) |">venue</span>
                 <span><a th:href="@{'/venuedetails/' + ${party.venue.id}}">&#128279;</a></span>
-            </p></div><br>
-            <div class="info">Price : </div>
-            <div th:if="${party.priceInEur}"><p th:text="|${party.pricePresaleInEur} &euro; (presale) / ${party.priceInEur} &euro;|">0</p></div>
+            </p></div>
+            <br>
+            <div class="info">Price :</div>
+            <div th:if="${party.priceInEur}"><p
+                    th:text="|${party.pricePresaleInEur} &euro; (presale) / ${party.priceInEur} &euro;|">0</p></div>
             <div th:unless="${party.priceInEur}"><p>gratis</p></div>
             <br>
-            <div class="info">Doors : </div>
-            <div><p th:text="${#dates.format(party.doors, 'HH:mm')}">doors</p></div><br>
+            <div class="info">Doors :</div>
+            <div><p th:text="${#dates.format(party.doors, 'HH:mm')}">doors</p></div>
+            <br>
             <div th:if="${!party.extraInfo.trim().equals('')}">
-                <div class="info">Extra info : </div>
-                <div><p th:text="${party.extraInfo}">no</p></div><br>
+                <div class="info">Extra info :</div>
+                <div><p th:text="${party.extraInfo}">no</p></div>
+                <br>
             </div>
             <div th:if="${party.getArtists().size()}>0" class="artistlist collectionlist">
                 <h2>line up:</h2>
