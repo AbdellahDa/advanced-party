@@ -1,41 +1,58 @@
-html {
-    background-color: #cd8a27;
+body {
+    background-color: #D0CFEC;
+    color: #4c6c5d;
+    font-family: Bahnschrift, sans-serif;
+    margin: 0;
 }
 
-div.info {
-    display: inline-block;
-    width: 200px;
+h1 {
+    margin: 20px 40px;
+    text-align: left;
+    font-size: 4em;
 }
 
-div.info + div {
-    display: inline-block;
+h2 {
+    margin: 10px 0;
+    font-size: 2em;
 }
 
-div.info {
-    display: inline-block;
-    width: 200px;
+a {
+    text-decoration: none;
 }
 
-div.info + div {
-    display: inline-block;
-}
-
+/* header with title and navigation */
 .nav {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
+    background-color: #6A8E7F;
     color: #EDC7CF;
     height: 150px;
 }
 
-a.menuButton {
-    display: block;
-    margin: 0 10px;
-    width: 6em;
-    padding: 0.2em;
+.freespaceforheader {
+    margin: 150px 0 20px 0;
 }
 
+/*navigation buttons in header*/
+.navbuttons {
+    display: flex;
+}
+
+.row1 {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+}
+
+.row1content {
+    flex-grow: 4;
+    margin: 0 50px;
+}
+
+/* links that look like buttons */
 .buttonLook {
     background-color: #EDC7CF;
     color: #6A8E7F;
@@ -44,13 +61,159 @@ a.menuButton {
     box-shadow: 1px 1px 1px darkgrey;
 }
 
-.navbuttons {
+.buttonLook:hover {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.buttonLook:active {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.mediumButton {
+    display: block;
+    margin: 10px 40px;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+.smallButton {
+    display: block;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.menuButton {
+    display: block;
+    margin: 0 10px;
+    width: 6em;
+    padding: 0.2em;
+}
+
+.filterButton {
+    margin: 0 2px;
+    width: 2em;
+    padding: 0.2em;
+}
+
+.prevButtonDiv {
+    position: fixed;
+    left: 10px;
+    top: 160px;
+}
+
+.nextButtonDiv {
+    position: fixed;
+    right: 10px;
+    top: 160px;
+}
+
+.editButtonDiv {
+    position: fixed;
+    right: 50px;
+    top: 160px;
+}
+
+.newButtonDiv {
+    position: fixed;
+    right: 50px;
+    top: 180px;
+}
+
+.saveButtonDiv {
+    position: fixed;
+    right: 110px;
+    top: 156px;
+}
+
+.bottom {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+    height: 30px;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.bottom p {
+    margin-left: 40px;
+}
+
+.info {
+    width: 240px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.info + div {
+    display: inline-block;
+}
+
+.editfield {
+    margin-left: 8px;
+    font-size: 1em;
+}
+
+textarea.editfield {
+    width: 300px;
+    height: 100px;
+    vertical-align: top;
+}
+
+p { margin: 5px; }
+
+.activeFilter {
+    background-color: #f3a4b4;
+    color: #2b3e35;
+}
+
+.filters {
+    clear: left;
+    float: left;
+}
+
+.onefilter, .oneinput {
+    margin: 2px 0;
     display: flex;
 }
-.bottom {
-    width: 50px;
+
+.filtername {
+    padding: 0.2em;
+    width: 70px;
+    text-align: right;
 }
-img {
-    width: 100%;
-    height: auto;
+
+input + span {
+    margin-left: 5px;
+}
+
+.verticalmargin {
+    margin: 8px 0;
+}
+
+.generalinfo {
+    font-size: 12px;
+    background-color: lightgoldenrodyellow;
+    padding: 1px 5px;
+}
+
+.collectionlist {
+    float: left;
+}
+
+.collectionleft {
+    clear: left;
+}
+
+.error {
+    color: red;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+
+.fieldError, input.fieldError {
+    background-color: red;
 }
