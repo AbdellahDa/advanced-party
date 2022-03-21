@@ -1,4 +1,5 @@
 package be.thomasmore.party.model;
+
 import javax.persistence.*;
 import java.util.Collection;
 
