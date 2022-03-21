@@ -1,6 +1,7 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Animal;
+import be.thomasmore.party.model.Party;
 import be.thomasmore.party.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class AnimalController {
 
     @GetMapping({"/animaldetails", "/animaldetails/{id}"})
     public String animalDetails(Model model, @PathVariable(required = false) Integer id) {
-        if (id == null) return "animaldetails";
+        if (id==null) return "animaldetails";
         Optional<Animal> optionalAnimal = animalRepository.findById(id);
         Optional<Animal> optionalPrev = animalRepository.findFirstByIdLessThanOrderByIdDesc(id);
         Optional<Animal> optionalNext = animalRepository.findFirstByIdGreaterThanOrderById(id);
