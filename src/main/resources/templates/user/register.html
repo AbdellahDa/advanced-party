@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}"/>
+  <title>Registreer pagina</title>
+</head>
+<body>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div class="row1">
+  <div class="row1content">
+    <div>
+      <h2>Register</h2>
+    </div>
+    <div>
+      <form th:action="@{/user/register}" method="post">
+        <div class="oneinput saveButtonDiv">
+          <input type="submit" value="go!" class="smallButton buttonLook">
+        </div>
+        <div class="oneinput cancelButtonDiv">
+          <a href="/partylist" class="smallButton buttonLook">cancel</a>
+        </div>
+        <div class="oneinput">
+          <label for="username" class="info">Username: </label>
+          <input type="text" id="username" name="userName" class="editfield">
+        </div>
+        <div class="oneinput">
+          <label for="password" class="info">Password: </label>
+          <input type="password" id="password" name="password" class="editfield">
+        </div>
+        <div class="oneinput">
+          <label for="name" class="info">Name: </label>
+          <input type="text" id="name" name="name" class="editfield">
+        </div>
+        <div class="oneinput">
+          <label for="city" class="info">City: </label>
+          <input type="text" id="city" name="city" class="editfield">
+        </div>
+        <div class="oneinput">
+          <label for="bio" class="info">Bio: </label>
+          <input type="text" id="bio" name="bio" class="editfield">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de header</div>
+</body>
+</html>

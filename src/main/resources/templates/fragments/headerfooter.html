@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -7,13 +8,21 @@
 <body>
 <div th:fragment="header">
     <div class="nav">
-        <h1>Let's Party!</h1>
+        <h1>
+            <span>Let's Party!</span>
+            <span sec:authorize="isAuthenticated()">logged in as <span sec:authentication="name"></span></span>
+        </h1>
+
         <div class="navbuttons">
-            <a class="buttonLook menuButton" href="/home">home</a>
-            <a class="buttonLook menuButton" href="/venuelist">venues</a>
-            <a class="buttonLook menuButton" href="/artistlist">artists</a>
-            <a class="buttonLook menuButton" href="/partylist">parties</a>
-            <a class="buttonLook menuButton" href="/about">about</a>
+            <div>
+                <a class="buttonLook menuButton" href="/home">home</a>
+                <a class="buttonLook menuButton" href="/venuelist">venues</a>
+                <a class="buttonLook menuButton" href="/artistlist">artists</a>
+                <a class="buttonLook menuButton" href="/partylist">parties</a>
+                <a class="buttonLook menuButton" href="/about">about</a>
+            </div>
+            <div th:replace="fragments/user :: loginmenu">Hier komt het login user deel</div>
+            <div th:replace="fragments/user :: logoutmenu">Hier komt het logout user deel</div>
         </div>
     </div>
     <div class="freespaceforheader"></div>

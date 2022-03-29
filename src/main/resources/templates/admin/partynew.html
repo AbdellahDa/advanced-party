@@ -15,6 +15,7 @@
     <div>
       <h2>New party</h2>
     </div>
+    <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
     <div>
       <form th:action="@{/admin/partynew}" method="post">
         <div class="oneinput saveButtonDiv">
@@ -22,15 +23,15 @@
         </div>
         <div class="oneinput">
           <label for="name" class="info">Name: </label>
-          <input type="text" id="name" class="editfield" th:field="*{name}">
+          <input type="text" id="name" class="editfield" th:field="*{name}" th:errorclass="fieldError">
         </div>
         <div class="oneinput">
           <label for="date" class="info">Date: </label>
-          <input type="date" id="date" class="editfield" th:field="*{date}">
+          <input type="date" id="date" class="editfield" th:field="*{date}" th:errorclass="fieldError">
         </div>
         <div class="oneinput">
           <label for="where" class="info">Where: </label>
-          <select id="where" class="editfield" th:field="*{venue}">
+          <select id="where" class="editfield" th:field="*{venue}" th:errorclass="fieldError">
             <option th:each="v : ${venues}" th:selected="*{venue}" th:value="${v.id}" th:text="${v.venueName}"></option>
           </select>
         </div>
@@ -44,11 +45,16 @@
         </div>
         <div class="oneinput">
           <label for="doors" class="info">Doors: </label>
-          <input type="time" id="doors" class="editfield" th:field="*{doors}">
+          <input type="time" id="doors" class="editfield" th:field="*{doors}" th:errorclass="fieldError">
         </div>
         <div class="oneinput">
           <label for="extrainfo" class="info">Extra info: </label>
           <textarea id="extrainfo" class="editfield" th:field="*{extraInfo}"></textarea>
+        </div>
+        <div class="oneinput" th:each="artist, status: ${artists}">
+          <label for="artists" class="info" th:text="${status.first} ? 'Artiesten: ' : ''"></label>
+          <input id="artists" type="checkbox" th:value="${artist.id}" th:checked="${party.getArtists()==null} ? false : ${party.getArtists().contains(artist)}" name="artistIds">
+          <span th:text="${artist.artistName}"></span>
         </div>
       </form>
     </div>
